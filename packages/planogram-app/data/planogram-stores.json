@@ -1,0 +1,37 @@
+[
+    {
+        "chId": "chid_1",
+        "chName": "Walmart",
+        "csId": "store_1",
+        "csName": "#8451",
+        "type": "STORE"
+    },
+    {
+        "chId": "chid_1",
+        "chName": "Walmart",
+        "csId": "store_2",
+        "csName": "#8452",
+        "type": "STORE"
+    },
+    {
+        "chId": "chid_1",
+        "chName": "Walmart",
+        "csId": "store_3",
+        "csName": "#8453",
+        "type": "STORE"
+    },
+    {
+        "chId": "chid_1",
+        "chName": "Walmart",
+        "csId": "store_4",
+        "csName": "#8454",
+        "type": "STORE"
+    },
+    {
+        "chId": "chid_2",
+        "chName": "Krogers",
+        "csId": "store_5",
+        "csName": "#9451",
+        "type": "STORE"
+    }
+]

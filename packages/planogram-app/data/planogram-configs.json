@@ -1,0 +1,14 @@
+[
+    {
+      "configId": "config_1",
+      "configName": "Default",
+      "lowInventory": 30,
+      "outOfStock": 10
+    },
+    {
+      "configId": "config_2",
+      "configName": "X-Mas config",
+      "lowInventory": 20,
+      "outOfStock": 5
+    }
+  ]

@@ -1,0 +1,12 @@
+{
+  "name": "ui-dxp-planogram",
+  "version": "1.0.0",
+  "description": "Planogram UI App",
+  "repository": "https://pepsicoit.visualstudio.com/CTO_DigitalServices_WebSolutions/_git/ui-dxp-planogram",
+  "author": "Pepsico",
+  "license": "Private",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

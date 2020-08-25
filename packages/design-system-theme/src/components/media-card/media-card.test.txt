@@ -1,0 +1,16 @@
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import MediaCard from './media-card'
+import '../../icons'
+
+beforeAll(() => {
+	config.autoAddCss = false
+})
+
+test('Media Card Creation', () => {
+	const component = renderer.create(<MediaCard />)
+	const cardComponent = component.toJSON()
+	expect(cardComponent).toMatchSnapshot()
+})

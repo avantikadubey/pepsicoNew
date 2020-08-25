@@ -1,0 +1,26 @@
+/* eslint-disable prettier/prettier */
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import CardContainer from './card-container'
+import '../../icons'
+import content from '../../data/staticData'
+import mockData from '../../data/planogram--ConfigurePage-dummy-data'
+
+const data = content[0]
+
+beforeAll(() => {
+	config.autoAddCss = false
+})
+
+test('Card Container Creation', () => {
+	const component = renderer.create(
+		<CardContainer
+			data={data.mediaCardContainer}
+			cardResponse={mockData.chain[0].stores[0].configuration[0].planograms}
+		/>
+	)
+	const cardComponent = component.toJSON()
+	expect(cardComponent).toMatchSnapshot()
+})

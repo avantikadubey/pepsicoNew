@@ -1,0 +1,25 @@
+{
+    "configId": "config_1",
+    "pogs": [
+        {
+            "locationCode": "Gondola",
+            "pogId": "pog_1",
+            "salesAllocation": 80
+        },
+        {
+            "locationCode": "D1",
+            "pogId": "pog_2",
+            "salesAllocation": 10
+        },
+        {
+            "locationCode": "D2",
+            "pogId": "pog_3",
+            "salesAllocation": 5
+        },
+        {
+            "locationCode": "D3",
+            "pogId": "pog_4",
+            "salesAllocation": 5
+        }
+    ]
+}

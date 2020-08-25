@@ -1,0 +1,166 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+resources:
+- repo: self
+trigger:
+- qa
+- develop
+
+stages:
+- stage: Development
+  displayName: 'Development Env Build'
+  condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+  jobs:
+  - job: 'Development_Build_Job'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    displayName: 'Development_Build_Job'
+    condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    workspace:
+      clean: all
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install NodeJS'
+      inputs:
+        versionSpec: 10.14.2
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
+      displayName: 'Install yarn'
+      inputs:
+        versionSpec: 1.12.3
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn install'
+      inputs:
+        Arguments: cache clean    
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn install'
+      inputs:
+        Arguments: install
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Run Component Tests'
+      inputs:
+        Arguments: workspace @planogram/design-system test
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Run App Tests'
+      inputs:
+        Arguments: workspace app test
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn build'
+      inputs:
+        Arguments: workspace app build:dev --verbose
+
+    - bash: zip -r planogram.zip packages/planogram-app/public
+      displayName: 'Archive The Public Folder'    
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn build'
+      inputs:
+        Arguments: workspace @planogram/design-system build-storybook 
+
+    - bash: zip -r storybook.zip packages/design-system-theme/public/
+      displayName: 'Archive The Public Folder'
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: 'planogram.zip'
+        targetFolder: $(Build.ArtifactStagingDirectory)
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: 'storybook.zip'
+        targetFolder: $(Build.ArtifactStagingDirectory)    
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: Artifact
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: Artifact    
+
+- stage: QA
+  displayName: 'QA Env Build'
+  condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/qa'))
+  jobs:
+  - job: 'QA_Build_Job'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    displayName: 'QA_Build_Job'
+    condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/qa'))
+    workspace:
+      clean: all        
+    steps:
+    - task: NodeTool@0
+      displayName: 'Install NodeJS'
+      inputs:
+        versionSpec: 10.14.2
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-installer-task.YarnInstaller@2
+      displayName: 'Install yarn'
+      inputs:
+        versionSpec: 1.12.3
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn install'
+      inputs:
+        Arguments: install
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Run Component Tests'
+      inputs:
+        Arguments: workspace @planogram/design-system test
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Run App Tests'
+      inputs:
+        Arguments: workspace app test
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn build'
+      inputs:
+        Arguments: workspace app build:qa
+
+    - bash: zip -r planogram.zip packages/planogram-app/public
+      displayName: 'Archive The Public Folder'    
+
+    - task: geeklearningio.gl-vsts-tasks-yarn.yarn-task.Yarn@2
+      displayName: 'Yarn build'
+      inputs:
+        Arguments: workspace @planogram/design-system build-storybook 
+
+    - bash: zip -r storybook.zip packages/design-system-theme/public/
+      displayName: 'Archive The Public Folder'
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: 'planogram.zip'
+        targetFolder: $(Build.ArtifactStagingDirectory)
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: 'storybook.zip'
+        targetFolder: $(Build.ArtifactStagingDirectory)    
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: Artifact
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: Artifact

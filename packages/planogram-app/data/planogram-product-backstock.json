@@ -1,0 +1,47 @@
+[
+  {
+    "backstockQty": "2",
+    "bdc": "23542323",
+    "csId": "store_1",
+    "id": "BACKSTOCK_0",
+    "title": "this is DUMMY data",
+    "type": "BACKSTOCK",
+    "upc": "0026266261"
+  },
+  {
+    "backstockQty": 15,
+    "bdc": "23542324",
+    "csId": "store_1",
+    "id": "BACKSTOCK_1",
+    "title": "this is DUMMY data",
+    "type": "BACKSTOCK",
+    "upc": "0026266262"
+  },
+  {
+    "backstockQty": 15,
+    "bdc": "23542325",
+    "csId": "store_1",
+    "id": "BACKSTOCK_2",
+    "title": "this is DUMMY data",
+    "type": "BACKSTOCK",
+    "upc": "0026266263"
+  },
+  {
+    "backstockQty": 15,
+    "bdc": "23542326",
+    "csId": "store_1",
+    "id": "BACKSTOCK_3",
+    "title": "this is DUMMY data",
+    "type": "BACKSTOCK",
+    "upc": "0026266264"
+  },
+  {
+    "backstockQty": 15,
+    "bdc": "23542327",
+    "csId": "store_1",
+    "id": "BACKSTOCK_4",
+    "title": "this is DUMMY data",
+    "type": "BACKSTOCK",
+    "upc": "0026266265"
+  }
+]

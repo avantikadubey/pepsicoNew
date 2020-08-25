@@ -1,0 +1,60 @@
+    {
+        "headerContainer": {
+            "headerTitleBegin": "Planogram",
+            "headerTitleEnd": "Simulator",
+            "storeNameLabel": "Chain",
+            "storeNumberLabel": "CIS ID"
+        },
+        "tabs": [
+            {
+                "name": "Configuration",
+                "labels": {
+                    "inventoryContainer": {
+                        "configurationLabel": "Configuration",
+                        "lowInventoryLabel": "Low Inventory Threshold",
+                        "oosInventoryLabel": "OOS Inventory Threshold"
+                    },
+                    "mediaCardContainer": {
+                        "totalSalesAllocationLabel": "Total Sales Allocation",
+                        "cardSubText": "Sales Allocation",
+                        "buttonLabel1": "Save As",
+                        "buttonLabel2": "Save",
+                        "buttonLabel3": "Delete",
+                        "buttonLabel4": "Add Planogram"
+
+                    },
+                    "editContainer": {
+                        "editLabel": "Edit",
+                        "buttonLabel1": "Save",
+                        "buttonLabel2": "Cancel",
+                        "informationText": "<b>Hint:</b> Select a product from the display below to get started",
+                        "salesText": "Sales Allocation"
+                    },
+                    "editModalContainer": {
+                        "searchLabel": "Select a replacement:",
+                        "searchPlaceholder": "Search for a product"
+                    }
+                }
+            },
+            {
+                "name": "Data Upload",
+                "labels": {}
+            },
+            {
+                "name": "Back Stock",
+                "labels": {}
+            },
+            {
+                "name": "Simulation",
+                "labels": {}
+            },
+            {
+                "name": "Comparison",
+                "labels": {}
+            },
+            {
+                "name": "Template",
+                "labels": {}
+            }
+        ]
+    }

@@ -1,0 +1,37 @@
+import React from 'react'
+import renderer from 'react-test-renderer'
+import InventorySliders from './inventory-sliders'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+
+
+
+
+// test('Media Card Creation', () => {
+// 	const component = renderer.create(<MediaCard />)
+// 	const cardComponent = component.toJSON()
+// 	expect(cardComponent).toMatchSnapshot()
+// })
+
+const label ={
+    lowInventoryLabel: "Test1",
+    oosInventoryLabel:"Test2"
+}
+const thresholdValues={
+    lowInventory:0,
+    outOfStock:0
+}
+
+beforeAll(() => {
+	config.autoAddCss = false
+})
+
+describe('InventorySliders', () => {
+  console.log("test starts")
+    test('snapshot renders', () => {
+      const component = renderer.create(<InventorySliders />);
+      let tree = component.toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
